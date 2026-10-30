@@ -3,6 +3,7 @@ from datetime import timedelta
 from sqlalchemy import select
 from sqlalchemy.orm import Session, joinedload
 
+from app.core.algoritmos import se_cruzan
 from app.core.exceptions import Conflicto, NoEncontrado, Prohibido
 from app.core.security import ahora_utc
 from app.core.validaciones import normalizar
@@ -47,7 +48,7 @@ def crear(db: Session, sesion_id: str, usuario: Usuario) -> Sesion:
     for otra in otras_sesiones:
         otro_inicio = otra.fecha
         otro_fin = otro_inicio + timedelta(minutes=otra.duracion_min)
-        if inicio < otro_fin and otro_inicio < fin:
+        if se_cruzan(inicio, fin, otro_inicio, otro_fin):
             raise Conflicto(
                 f"Cruce de horario con '{otra.titulo}' "
                 f"({otra.fecha.strftime('%H:%M')}-{otro_fin.strftime('%H:%M')})"

@@ -78,7 +78,9 @@ El frontend debe enviar las peticiones con `credentials: "include"`.
 | Contacto | `POST /contacto` |
 
 El catálogo completo, con permisos y filtros, está en
-[`NIVELACION_BACKEND_FRONTEND.md`](NIVELACION_BACKEND_FRONTEND.md).
+`Api JUANCA/NIVELACION_BACKEND_FRONTEND.md`.
+La equivalencia con el núcleo anterior está en
+`Api JUANCA/MIGRACION_LOGICA_ANTERIOR.md`.
 
 ## Pruebas
 
@@ -87,14 +89,28 @@ El catálogo completo, con permisos y filtros, está en
 ```
 
 Las pruebas usan una base SQLite en memoria y no modifican `gea.db`.
-Actualmente son **45 pruebas**.
+Actualmente son **51 pruebas**. Incluyen `tests/test_algoritmos.py`, que cubre
+el merge sort y el cruce de intervalos.
+
+## Algoritmos implementados a mano
+
+`app/core/algoritmos.py` conserva:
+
+- `mezclar` y `ordenar_mezcla`: merge sort recursivo, sin `sorted` ni
+  `list.sort`, que devuelve una lista nueva.
+- `se_cruzan`: cruce de intervalos con desigualdad estricta.
+
+`sesion_service.listar` usa `ordenar_mezcla` para los órdenes `date`, `seats`,
+`title` y `area`; `sesion_service._buscar_conflicto` e
+`inscripcion_service.crear` usan `se_cruzan`. Los filtros y la búsqueda siguen
+siendo recorridos lineales escritos a mano.
 
 ## Estructura
 
 ```text
 app/
 ├── main.py
-├── core/          configuración, constantes, errores, seguridad y validaciones
+├── core/          configuración, constantes, errores, seguridad, validaciones y algoritmos
 ├── db/            conexión, creación de tablas y datos iniciales
 ├── models/        tablas SQLAlchemy
 ├── schemas/       contratos Pydantic

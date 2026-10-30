@@ -4,6 +4,7 @@ from uuid import uuid4
 from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
+from app.core.algoritmos import ordenar_mezcla, se_cruzan
 from app.core.constants import MODALIDADES, ROLES_QUE_REGISTRAN, TIPOS_SESION
 from app.core.exceptions import Conflicto, ErrorAplicacion, NoEncontrado, Prohibido
 from app.core.security import ahora_utc
@@ -35,6 +36,20 @@ def _cargar(db: Session, sesion_id: str) -> Sesion:
 
 def obtener(db: Session, sesion_id: str) -> Sesion:
     return _cargar(db, sesion_id)
+
+
+def _clave_orden(sesion: Sesion, orden: str) -> tuple:
+    """Clave de comparación equivalente a la del núcleo anterior."""
+    if orden == "seats":
+        return (
+            -(sesion.cupo_maximo - len(sesion.inscripciones)),
+            sesion.fecha,
+        )
+    if orden == "title":
+        return (normalizar(sesion.titulo), sesion.fecha)
+    if orden == "area":
+        return (normalizar(sesion.area.nombre), sesion.fecha)
+    return (sesion.fecha,)
 
 
 def listar(
@@ -85,21 +100,10 @@ def listar(
             )
         ]
 
-    if orden == "seats":
-        sesiones.sort(
-            key=lambda sesion: (
-                -(sesion.cupo_maximo - len(sesion.inscripciones)),
-                sesion.fecha,
-            )
-        )
-    elif orden == "title":
-        sesiones.sort(key=lambda sesion: normalizar(sesion.titulo))
-    elif orden == "area":
-        sesiones.sort(key=lambda sesion: normalizar(sesion.area.nombre))
-    else:
-        sesiones.sort(key=lambda sesion: sesion.fecha)
-
-    return sesiones
+    return ordenar_mezcla(
+        sesiones,
+        lambda sesion: _clave_orden(sesion, orden),
+    )
 
 
 def _franja(hora: int) -> str:
@@ -167,7 +171,7 @@ def _buscar_conflicto(
             continue
         otro_inicio = otra.fecha
         otro_fin = otra.fecha + timedelta(minutes=otra.duracion_min)
-        if not (inicio < otro_fin and otro_inicio < fin):
+        if not se_cruzan(inicio, fin, otro_inicio, otro_fin):
             continue
         if otra.tutor_id == tutor_id:
             raise Conflicto(
@@ -334,9 +338,9 @@ def inscritos(db: Session, sesion_id: str, usuario: Usuario) -> list[dict]:
             "program": inscripcion.estudiante.programa,
             "status": inscripcion.estado,
         }
-        for inscripcion in sorted(
-            sesion.inscripciones,
-            key=lambda item: normalizar(item.estudiante.nombre),
+        for inscripcion in ordenar_mezcla(
+            list(sesion.inscripciones),
+            lambda item: (normalizar(item.estudiante.nombre),),
         )
     ]
 

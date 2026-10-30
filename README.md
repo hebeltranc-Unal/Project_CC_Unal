@@ -73,18 +73,17 @@ Gea/
 ├── Backend/
 │   ├── app/
 │   │   ├── main.py            # FastAPI, CORS, errores y lifespan
-│   │   ├── core/              # configuración, seguridad y validaciones
+│   │   ├── core/              # configuración, seguridad, validaciones y algoritmos
 │   │   ├── db/                # conexión, tablas y datos iniciales
 │   │   ├── models/            # tablas SQLAlchemy
 │   │   ├── schemas/           # contratos Pydantic
 │   │   ├── services/          # reglas de negocio
 │   │   ├── controllers/       # coordinación entre rutas y servicios
 │   │   └── api/               # dependencias y rutas /api/v1
-│   ├── tests/                 # 45 pruebas automatizadas
+│   ├── tests/                 # 51 pruebas automatizadas
 │   ├── pytest.ini
 │   ├── requirements.txt
 │   ├── ESTRUCTURA_API_REST.md
-│   ├── NIVELACION_BACKEND_FRONTEND.md
 │   └── README.md
 ├── Frontend/
 │   ├── src/
@@ -237,7 +236,7 @@ inscripciones de ejemplo.
 Todos los endpoints de negocio cuelgan de `/api/v1`; `GET /health` está en la
 raíz del servidor. El catálogo completo, con permisos, filtros y mapeo de campos,
 está en
-[`Backend/NIVELACION_BACKEND_FRONTEND.md`](Backend/NIVELACION_BACKEND_FRONTEND.md).
+`Api JUANCA/NIVELACION_BACKEND_FRONTEND.md`.
 
 | Recurso | Rutas principales |
 |---|---|
@@ -264,6 +263,21 @@ está en
 | `busqueda` | Texto libre | Busca en título, asignatura y tutor |
 | `orden` | `date`, `seats`, `title`, `area` | Ordena el resultado |
 | `kind` | `sesion`, `reunion`, `all` | Tipo de registro |
+
+### Algoritmos implementados a mano
+
+El backend conserva en `Backend/app/core/algoritmos.py` los algoritmos que el
+curso exige implementar sin funciones de ordenamiento de la biblioteca:
+
+- `mezclar` y `ordenar_mezcla`: merge sort recursivo; no usan `sorted` ni
+  `list.sort` y no modifican la lista original.
+- `se_cruzan`: comparación de intervalos con desigualdad estricta, para que dos
+  sesiones consecutivas no se consideren cruzadas.
+
+`sesion_service.listar` usa `ordenar_mezcla` con los criterios `date`, `seats`,
+`title` y `area`. Los filtros y la búsqueda siguen siendo recorridos lineales
+hechos a mano en `sesion_service.listar`; `area_service.obtener_por_nombre`
+también recorre las áreas linealmente.
 
 ---
 
@@ -299,10 +313,11 @@ En Linux/macOS:
 .venv/bin/python -m pytest
 ```
 
-Resultado actual: **45 pruebas aprobadas**.
+Resultado actual: **51 pruebas aprobadas**.
 
 | Archivo | Qué cubre |
 |---|---|
+| `tests/test_algoritmos.py` | Merge sort, intervalos y casos borde |
 | `tests/test_auth.py` | Login, cookie, logout, roles y origen |
 | `tests/test_sesiones.py` | Listados, filtros, detalle, CRUD y conflictos |
 | `tests/test_inscripciones.py` | Reservas, duplicados, cupos, cruces, sesiones pasadas y cancelación |
@@ -328,9 +343,14 @@ npm run preview
 - [`Backend/README.md`](Backend/README.md): instalación y ejecución del backend.
 - [`Backend/ESTRUCTURA_API_REST.md`](Backend/ESTRUCTURA_API_REST.md): capas,
   archivos y responsabilidades.
-- [`Backend/NIVELACION_BACKEND_FRONTEND.md`](Backend/NIVELACION_BACKEND_FRONTEND.md):
-  estado, endpoints, permisos, mapeo de campos y pendientes.
+- `Api JUANCA/NIVELACION_BACKEND_FRONTEND.md`: estado, endpoints, permisos,
+  mapeo de campos y pendientes.
+- `Api JUANCA/MIGRACION_LOGICA_ANTERIOR.md`: equivalencia entre el núcleo
+  anterior de `Api JUANCA` y el backend nuevo.
 - [`Frontend/README.md`](Frontend/README.md): páginas y estructura del frontend.
+
+Los documentos de nivelación y migración se mantienen en `Api JUANCA` porque
+describen el paso del núcleo anterior al backend nuevo.
 
 ---
 

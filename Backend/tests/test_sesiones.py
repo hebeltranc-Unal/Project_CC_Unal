@@ -1,3 +1,4 @@
+from app.core.validaciones import normalizar
 from tests.fechas import fecha_futura
 
 COORDINADOR = ("coordinador@unal.edu.co", "Coordinador123")
@@ -50,6 +51,26 @@ def test_filtrar_por_franja_y_ordenar_por_titulo(client):
     assert len(manana.json()) == 4
     assert noche.json() == []
     assert por_titulo.json()[0]["id"] == "fisica-dinamica"
+
+
+def test_ordenar_por_fecha_cupos_y_area(client):
+    por_fecha = client.get("/api/v1/sesiones").json()
+    fechas = [sesion["date"] for sesion in por_fecha]
+    assert fechas == sorted(fechas)
+
+    por_cupos = client.get(
+        "/api/v1/sesiones", params={"orden": "seats"}
+    ).json()
+    disponibles = [
+        sesion["capacity"] - sesion["booked"] for sesion in por_cupos
+    ]
+    assert disponibles == sorted(disponibles, reverse=True)
+
+    por_area = client.get(
+        "/api/v1/sesiones", params={"orden": "area"}
+    ).json()
+    areas = [normalizar(sesion["area"]) for sesion in por_area]
+    assert areas == sorted(areas)
 
 
 def test_detalle_de_sesion(client):

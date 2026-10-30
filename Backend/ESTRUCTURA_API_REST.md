@@ -19,6 +19,7 @@ backend/
 │   │   ├── constants.py            # roles, modalidades y tipos
 │   │   ├── exceptions.py           # errores de negocio convertidos a HTTP
 │   │   ├── security.py             # Argon2id, tokens y hash de sesión
+│   │   ├── algoritmos.py           # merge sort y cruce de intervalos
 │   │   └── validaciones.py         # correo, fechas, horas y normalización
 │   │
 │   ├── db/
@@ -94,6 +95,7 @@ backend/
 │   ├── __init__.py
 │   ├── conftest.py                 # base SQLite en memoria y cliente de pruebas
 │   ├── fechas.py                   # helper de fechas futuras para las pruebas
+│   ├── test_algoritmos.py          # merge sort e intervalos
 │   ├── test_auth.py
 │   ├── test_sesiones.py
 │   ├── test_inscripciones.py
@@ -126,6 +128,7 @@ Contiene la configuración y utilidades transversales:
 - `constants.py`: roles, modalidades y tipos de registro.
 - `exceptions.py`: errores de negocio (`404`, `409`, `401`, `403`) que `main.py` convierte en respuestas JSON.
 - `security.py`: Argon2id, generación de tokens y hash SHA-256 de la sesión.
+- `algoritmos.py`: merge sort (`mezclar`, `ordenar_mezcla`) y cruce de intervalos (`se_cruzan`), implementados a mano.
 - `validaciones.py`: correo institucional, fechas, hora de Bogotá y normalización de texto.
 
 ### `app/db/`
@@ -176,6 +179,21 @@ Contiene las reglas de negocio, sin depender de FastAPI:
 
 Reciben una sesión de SQLAlchemy y devuelven datos o lanzan errores de negocio.
 
+### Algoritmos implementados a mano
+
+`app/core/algoritmos.py` concentra los algoritmos que no deben depender de
+funciones de ordenamiento de la biblioteca:
+
+- `mezclar` y `ordenar_mezcla`: merge sort recursivo, sin `sorted` ni
+  `list.sort`, que devuelve una lista nueva.
+- `se_cruzan`: comparación de intervalos con desigualdad estricta, para que dos
+  sesiones consecutivas no se consideren cruzadas.
+
+`sesion_service.listar` usa `ordenar_mezcla` con `_clave_orden` para los
+criterios `date`, `seats`, `title` y `area`. Los filtros y la búsqueda son
+recorridos lineales en el mismo service; `area_service.obtener_por_nombre`
+también recorre las áreas linealmente.
+
 ### `app/controllers/`
 
 Recibe los datos validados por los schemas, llama al service y transforma el
@@ -212,7 +230,7 @@ SQLite en memoria, así que no modifican `gea.db`.
 ```
 
 El catálogo completo de endpoints y el mapeo con el frontend están en
-[`NIVELACION_BACKEND_FRONTEND.md`](NIVELACION_BACKEND_FRONTEND.md).
+[`Api JUANCA/NIVELACION_BACKEND_FRONTEND.md`](../../Api JUANCA/NIVELACION_BACKEND_FRONTEND.md).
 
 ## Flujo de una petición
 
@@ -240,12 +258,16 @@ response_model de Pydantic
 |---|---|
 | `gea/modelo.py` | `app/models/` y `app/db/base.py` |
 | `gea/negocio.py` | `app/services/` |
-| `gea/consultas.py` | `app/services/sesion_service.py` |
+| `gea/consultas.py` | `app/core/algoritmos.py` y `app/services/sesion_service.py` |
 | `gea/reportes.py` | `app/services/reporte_service.py` |
 | `gea/persistencia.py` | `app/db/session.py` |
-| `gea/validaciones.py` | `app/core/validaciones.py` |
+| `gea/validaciones.py` | `app/core/validaciones.py` y `app/core/algoritmos.py` |
 | `gea/constantes.py` | `app/core/constants.py` |
 | `gea/datos_prueba.py` | `app/db/seed.py` |
+
+El mapeo detallado función por función, incluido el destino del merge sort y de
+cada regla de negocio, está en
+[`Api JUANCA/MIGRACION_LOGICA_ANTERIOR.md`](../../Api JUANCA/MIGRACION_LOGICA_ANTERIOR.md).
 
 ## Dependencias
 
