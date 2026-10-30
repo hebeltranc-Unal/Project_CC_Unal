@@ -1,0 +1,94 @@
+/* Modal flotante de creación de sesión del tutor */
+
+/* Modal flotante de creación de sesión del tutor */
+.tutor-create-modal {
+  padding: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.tutor-create-modal::backdrop {
+  background: oklch(0.12 0.02 160 / 0.55);
+  backdrop-filter: blur(14px);
+}
+
+.tutor-create-card {
+  --admin-bg: oklch(0.205 0.032 162);
+  --admin-bg-deep: oklch(0.165 0.028 162);
+  --admin-surface: oklch(0.255 0.03 162);
+  --admin-surface-2: oklch(0.3 0.028 162);
+  --admin-border: oklch(1 0 0 / 0.12);
+  --admin-text: oklch(0.965 0.008 85);
+  --admin-muted: oklch(0.75 0.018 160);
+  --admin-cream: oklch(0.95 0.024 85);
+  --admin-cream-foreground: oklch(0.22 0.03 160);
+  --admin-accent: oklch(0.78 0.105 80);
+  position: relative;
+  width: min(100%, 76rem);
+  max-height: 92vh;
+  margin: auto;
+  overflow-y: auto;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border: 1px solid var(--admin-border);
+  border-radius: 1.5rem;
+  background-color: var(--admin-bg);
+  background-image: radial-gradient(ellipse 60% 50% at 88% -8%, color-mix(in oklch, var(--admin-accent) 13%, transparent), transparent 70%),
+    radial-gradient(ellipse 50% 42% at 0% 105%, color-mix(in oklch, var(--primary) 22%, transparent), transparent 72%);
+  color: var(--admin-text);
+  color-scheme: dark;
+  box-shadow: 0 40px 100px -30px oklch(0 0 0 / 0.8);
+  overscroll-behavior: contain;
+}
+
+.tutor-create-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-right: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tutor-create-head .admin-kicker {
+  margin-bottom: 0.45rem;
+}
+
+.tutor-create-head .modal-title {
+  color: var(--admin-cream);
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.tutor-create-head .modal-desc {
+  color: var(--admin-muted);
+}
+
+.tutor-create-card .modal-close {
+  color: var(--admin-muted);
+}
+
+.tutor-create-card .modal-close:hover {
+  background: var(--admin-surface-2);
+  color: var(--admin-text);
+}
+
+.tutor-create-card .admin-composer {
+  margin-top: 0.25rem;
+}
+
+.tutor-create-card .admin-composer-fields > .field-error {
+  color: color-mix(in oklch, var(--destructive) 78%, white);
+}
+
+@media (max-width: 640px) {
+  .tutor-create-card {
+    max-height: 94vh;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .tutor-create-head {
+    padding-right: 2rem;
+  }
+
+  .tutor-create-head .modal-title {
+    font-size: 1.8rem;
+  }
+}

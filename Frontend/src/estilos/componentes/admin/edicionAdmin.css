@@ -1,0 +1,94 @@
+/* Formularios de edición administrativa */
+
+.admin-session-form .field label {
+  color: var(--admin-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.admin-session-form input,
+.admin-session-form select,
+.admin-session-form textarea {
+  width: 100%;
+  padding: 0.6rem 0.65rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.55rem;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  font-size: 0.8rem;
+}
+
+.admin-session-form textarea {
+  resize: vertical;
+}
+
+.admin-session-form input:focus,
+.admin-session-form select:focus,
+.admin-session-form textarea:focus {
+  outline: none;
+  border-color: var(--admin-accent);
+}
+
+.admin-page .modal-card {
+  background: var(--admin-surface);
+  color: var(--admin-text);
+}
+
+.admin-page .modal-desc,
+.admin-page .modal-card .field label {
+  color: var(--admin-muted);
+}
+
+.admin-page .modal-title {
+  color: var(--admin-cream);
+}
+
+.admin-page .modal-close {
+  color: var(--admin-muted);
+}
+
+.admin-page .modal-close:hover {
+  background: var(--admin-surface-2);
+  color: var(--admin-text);
+}
+
+.admin-page .field-error {
+  color: color-mix(in oklch, var(--destructive) 78%, white);
+}
+
+.admin-page .enrolled-item {
+  border-bottom-color: var(--admin-border);
+}
+
+.admin-page .enrolled-index,
+.admin-page .enrolled-body span {
+  color: var(--admin-muted);
+}
+
+.admin-page .enrolled-body strong {
+  color: var(--admin-text);
+}
+
+.admin-page .modal-card .field input,
+.admin-page .modal-card .field select,
+.admin-page .modal-card .field textarea {
+  background: var(--admin-bg);
+  color: var(--admin-text);
+  border-color: var(--admin-border);
+}
+
+.admin-page .modal-card .field input:focus,
+.admin-page .modal-card .field select:focus,
+.admin-page .modal-card .field textarea:focus {
+  border-color: var(--admin-accent);
+  box-shadow: none;
+}
+
+.admin-page .modal-card .btn-primary {
+  background: var(--admin-cream);
+  color: var(--admin-cream-foreground);
+}
+
+.admin-page .modal-card .btn-primary:hover {
+  background: oklch(0.985 0.012 85);
+}

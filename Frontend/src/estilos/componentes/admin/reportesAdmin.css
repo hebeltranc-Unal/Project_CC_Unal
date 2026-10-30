@@ -1,0 +1,97 @@
+/* Reportes del panel administrativo */
+
+.admin-report-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .admin-report-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.admin-report-card {
+  padding: 1rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.85rem;
+  background: var(--admin-surface);
+}
+
+.admin-report-label {
+  color: var(--admin-muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-report-value {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--admin-cream);
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.admin-report-sub {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--admin-muted);
+  font-size: 0.72rem;
+}
+
+.admin-report-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.admin-area-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.admin-area-row {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr) 5.5rem;
+  gap: 0.7rem;
+  align-items: center;
+  font-size: 0.76rem;
+}
+
+.admin-area-row > span:first-child {
+  color: var(--admin-text);
+}
+
+.admin-area-track {
+  height: 0.45rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--admin-surface-2);
+}
+
+.admin-area-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--admin-accent);
+}
+
+.admin-area-value {
+  color: var(--admin-muted);
+  font-size: 0.7rem;
+  text-align: right;
+}
+
+.admin-enrolled-note {
+  margin-top: 0.75rem;
+  color: var(--admin-muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}

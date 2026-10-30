@@ -1,0 +1,32 @@
+/* Bloque de llamada a la acción */
+
+.cta {
+  padding: 4rem 2rem;
+  border-radius: 1.5rem;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .cta {
+    padding-block: 5rem;
+  }
+}
+
+.cta h2 {
+  max-width: 42rem;
+  margin-inline: auto;
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  font-weight: 500;
+}
+
+.cta p {
+  max-width: 32rem;
+  margin: 1rem auto 0;
+  opacity: 0.85;
+}
+
+.cta .btn {
+  margin-top: 2rem;
+}

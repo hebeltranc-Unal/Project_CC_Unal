@@ -1,0 +1,24 @@
+/* Estructura común de las páginas */
+
+.page-soft {
+  background-image: var(--gradient-soft);
+}
+
+.page-pad {
+  padding-block: 4rem;
+}
+
+.page-title {
+  margin-top: 0.75rem;
+  font-size: clamp(2.75rem, 6vw, 3.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.page-lead {
+  max-width: 36rem;
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+}

@@ -1,0 +1,54 @@
+.login-page {
+  display: grid;
+  place-items: center;
+  min-height: 60vh;
+  padding: 4rem 1rem;
+  background-image: var(--gradient-soft);
+}
+
+.login-card {
+  width: min(100%, 30rem);
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+}
+
+.login-card .page-title {
+  font-size: clamp(2.2rem, 5vw, 3rem);
+}
+
+.login-form {
+  margin-top: 2rem;
+}
+
+.login-note {
+  margin-top: 1.5rem;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.login-note a {
+  color: var(--primary);
+}
+
+.estado-pagina {
+  padding: 3rem 0;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.header-user strong {
+  color: var(--foreground);
+  font-weight: 500;
+}

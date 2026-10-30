@@ -1,0 +1,59 @@
+/* Tarjeta de sesión */
+
+.session-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+  color: inherit;
+  text-decoration: none;
+}
+
+.session-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.session-seats {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.session-day {
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.session-title {
+  margin-top: 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.35;
+  transition: color 0.2s;
+}
+
+.session-card:hover .session-title {
+  color: var(--primary);
+}
+
+.session-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.session-meta p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

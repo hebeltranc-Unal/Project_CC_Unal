@@ -1,0 +1,212 @@
+/* Cuenta y reservas del estudiante */
+
+.account-grid {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .account-grid {
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  }
+}
+
+.account-card {
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+}
+
+.account-card h2 {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.account-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.75rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.account-list > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.84rem;
+}
+
+.account-list > div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.account-list dt {
+  color: var(--muted-foreground);
+}
+
+.account-list dd {
+  min-width: 0;
+  margin: 0;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+.account-card .btn + .btn {
+  margin-top: 0.6rem;
+}
+
+.section-heading-inline {
+  margin-bottom: 1.5rem;
+}
+
+.section-heading-inline h2 {
+  font-size: clamp(1.60rem, 3vw, 2.1rem);
+}
+
+.reservation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reservation-card {
+  display: grid;
+  grid-template-columns: 4.1rem minmax(0, 1fr) auto;
+  gap: 1.15rem;
+  align-items: center;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+}
+
+.reservation-card-demo {
+  border-style: dashed;
+  opacity: 0.88;
+}
+
+.reservation-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  min-height: 4rem;
+  border-radius: 0.75rem;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.reservation-date span {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.reservation-date small {
+  margin-top: 0.15rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.reservation-body {
+  min-width: 0;
+}
+
+.reservation-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.reservation-code {
+  overflow: hidden;
+  color: var(--muted-foreground);
+  font-size: 0.68rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reservation-body h3 {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.reservation-meta {
+  margin-top: 0.25rem;
+  color: var(--muted-foreground);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.reservation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.reservation-demo-note {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--accent);
+  color: var(--accent-foreground);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.reservation-list + .empty-panel {
+  margin-top: 1rem;
+}
+
+.empty-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 2.75rem 1.5rem;
+  border: 1px dashed var(--border);
+  border-radius: 1rem;
+  background: color-mix(in oklch, var(--card) 70%, transparent);
+  text-align: center;
+}
+
+.empty-panel h3 {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.empty-panel p {
+  max-width: 26rem;
+  color: var(--muted-foreground);
+  font-size: 0.85rem;
+}
+
+.empty-panel .btn {
+  margin-top: 0.35rem;
+}
+
+.empty-panel .resource-icon {
+  margin-bottom: 0.25rem;
+}

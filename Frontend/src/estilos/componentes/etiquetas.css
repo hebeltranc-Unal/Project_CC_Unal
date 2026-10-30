@@ -1,0 +1,29 @@
+/* Etiquetas de colores */
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.tag-primary {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.tag-accent {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.tag-secondary {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.tag-muted {
+  background: var(--muted);
+  color: var(--muted-foreground);
+}

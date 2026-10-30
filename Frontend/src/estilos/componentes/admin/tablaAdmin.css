@@ -1,0 +1,204 @@
+/* Tablas y acciones del panel administrativo */
+
+.admin-table-card {
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  border: 1px solid var(--admin-border);
+  border-radius: 1rem;
+  background: color-mix(in oklch, var(--admin-surface) 88%, transparent);
+}
+
+.admin-table-card h2 {
+  margin-bottom: 0.35rem;
+  color: var(--admin-text);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.admin-page .table-hint {
+  display: none;
+  margin-bottom: 0.75rem;
+  color: var(--admin-muted);
+  font-size: 0.75rem;
+}
+
+.admin-page .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-page .data-table {
+  width: 100%;
+  min-width: 44rem;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.admin-page .data-table th {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--admin-border);
+  color: var(--admin-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.admin-page .data-table td {
+  padding: 0.8rem 0.75rem;
+  border-bottom: 1px solid var(--admin-border);
+  vertical-align: top;
+}
+
+.admin-page .data-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.admin-page .data-table tbody tr:hover {
+  background: color-mix(in oklch, var(--admin-surface-2) 58%, transparent);
+}
+
+.admin-page .cell-title {
+  display: block;
+  color: var(--admin-text);
+  font-weight: 600;
+}
+
+.admin-page .cell-sub {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--admin-muted);
+  font-size: 0.78rem;
+}
+
+.admin-page .table-tag {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--admin-accent) 15%, transparent);
+  color: var(--admin-accent);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.admin-page .table-note {
+  color: var(--admin-muted);
+}
+
+.admin-page .table-empty {
+  padding: 1.5rem 0.75rem;
+  color: var(--admin-muted);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .admin-page .table-hint {
+    display: block;
+  }
+}
+
+.admin-page .toast {
+  border-color: var(--admin-border);
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  box-shadow: 0 20px 50px -20px oklch(0 0 0 / 0.8);
+}
+
+.admin-page .toast p {
+  color: var(--admin-muted);
+}
+
+/* Panel administrativo: nuevas vistas */
+.admin-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.9rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.admin-panel-head h2 {
+  margin-bottom: 0.25rem;
+}
+
+.admin-create-btn-sm {
+  width: auto;
+  padding: 0.65rem 1rem;
+  border-radius: 0.65rem;
+  font-size: 0.8rem;
+}
+
+.admin-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.admin-filter {
+  display: flex;
+  align-items: center;
+}
+
+.admin-filter input,
+.admin-filter select {
+  min-height: 2.35rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.55rem;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  font-size: 0.76rem;
+}
+
+.admin-filter input {
+  min-width: 14rem;
+}
+
+.admin-filter input::placeholder {
+  color: color-mix(in oklch, var(--admin-muted) 80%, transparent);
+}
+
+.admin-filter select:focus,
+.admin-filter input:focus {
+  outline: none;
+  border-color: color-mix(in oklch, var(--admin-accent) 55%, var(--admin-border));
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.admin-action {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.4rem;
+  background: transparent;
+  color: var(--admin-muted);
+  font: inherit;
+  font-size: 0.68rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.admin-action:hover {
+  border-color: color-mix(in oklch, var(--admin-cream) 30%, var(--admin-border));
+  background: color-mix(in oklch, var(--admin-surface-2) 60%, transparent);
+  color: var(--admin-text);
+}
+
+.admin-action-danger {
+  border-color: color-mix(in oklch, var(--destructive) 35%, var(--admin-border));
+  color: color-mix(in oklch, var(--destructive) 78%, white);
+}
+
+.admin-action-danger:hover {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+}

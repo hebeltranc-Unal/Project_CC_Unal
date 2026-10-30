@@ -1,0 +1,519 @@
+/* Formulario para crear reuniones */
+
+.admin-composer {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+.admin-cover-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.admin-cover-preview {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 1px solid var(--admin-border);
+  border-radius: 1.25rem;
+  background: var(--admin-surface);
+}
+
+.admin-cover-preview > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-cover-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 2rem;
+  text-align: center;
+  color: var(--admin-muted);
+  background: radial-gradient(circle at 50% 28%, color-mix(in oklch, var(--admin-accent) 13%, transparent), transparent 65%),
+    var(--admin-surface);
+}
+
+.admin-cover-placeholder .icon {
+  width: 2rem;
+  height: 2rem;
+  color: var(--admin-cream);
+  opacity: 0.75;
+}
+
+.admin-cover-placeholder span {
+  color: var(--admin-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.admin-cover-placeholder small {
+  font-size: 0.72rem;
+}
+
+.admin-cover-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.admin-cover-label {
+  color: var(--admin-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.admin-cover-url {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-cover-url input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.6rem;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  font-size: 0.8rem;
+}
+
+.admin-cover-url input::placeholder {
+  color: color-mix(in oklch, var(--admin-muted) 78%, transparent);
+}
+
+.admin-icon-btn {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.75rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.6rem;
+  background: var(--admin-surface);
+  color: var(--admin-muted);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.admin-icon-btn:hover {
+  background: var(--admin-surface-2);
+  color: var(--admin-text);
+}
+
+.admin-cover-presets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-top: 0.15rem;
+}
+
+.admin-cover-preset {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 0.85rem;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.admin-cover-preset img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  opacity: 0.72;
+  transition: opacity 0.2s, transform 0.3s;
+}
+
+.admin-cover-preset span {
+  display: block;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.admin-cover-preset:hover img {
+  opacity: 0.95;
+  transform: scale(1.03);
+}
+
+.admin-cover-preset[aria-pressed="true"] {
+  border-color: var(--admin-accent);
+}
+
+.admin-cover-preset[aria-pressed="true"] img {
+  opacity: 1;
+}
+
+.admin-cover-preset[aria-pressed="true"]::after {
+  content: "✓";
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: var(--admin-cream);
+  color: var(--admin-cream-foreground);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.admin-composer-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.admin-composer-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.admin-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--admin-surface) 55%, transparent);
+  color: var(--admin-muted);
+  font-size: 0.72rem;
+}
+
+.admin-pill .icon {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.admin-title-field {
+  margin: 0.25rem 0 0.15rem;
+}
+
+.admin-event-title {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--admin-text);
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 4.5vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.admin-event-title::placeholder {
+  color: color-mix(in oklch, var(--admin-text) 38%, transparent);
+}
+
+.admin-event-title:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.admin-datetime {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.admin-datetime-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.35rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.9rem;
+  background: var(--admin-surface);
+}
+
+.admin-datetime-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.65rem;
+}
+
+.admin-datetime-row + .admin-datetime-row {
+  border-top: 1px solid var(--admin-border);
+}
+
+.admin-datetime-label {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 4.25rem;
+  color: var(--admin-muted);
+  font-size: 0.78rem;
+}
+
+.admin-datetime-label .icon {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.admin-datetime-row input[type="date"],
+.admin-datetime-row input[type="time"],
+.admin-datetime-row select {
+  padding: 0.45rem 0.55rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: var(--admin-surface-2);
+  color: var(--admin-text);
+  font-size: 0.8rem;
+}
+
+.admin-datetime-row input[type="date"] {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-datetime-row input[type="time"] {
+  flex: none;
+  width: 6.5rem;
+}
+
+.admin-datetime-row select {
+  flex: none;
+  width: 6.5rem;
+  margin-left: auto;
+}
+
+.admin-end-time {
+  flex: 1;
+  color: var(--admin-text);
+  font-size: 0.82rem;
+}
+
+.admin-timezone {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.9rem;
+  background: var(--admin-surface);
+  color: var(--admin-muted);
+  font-size: 0.72rem;
+}
+
+.admin-timezone .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.admin-timezone strong {
+  display: block;
+  color: var(--admin-text);
+  font-size: 0.76rem;
+  font-weight: 500;
+}
+
+.admin-timezone small {
+  display: block;
+  font-size: 0.7rem;
+}
+
+.admin-row {
+  display: flex;
+  gap: 0.85rem;
+  padding: 1rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.9rem;
+  background: var(--admin-surface);
+}
+
+.admin-row-icon {
+  flex: none;
+  margin-top: 0.1rem;
+  color: var(--admin-muted);
+}
+
+.admin-row-icon .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.admin-row-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-row-head > span {
+  color: var(--admin-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.admin-row-head select {
+  width: auto;
+  max-width: 55%;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: var(--admin-surface-2);
+  color: var(--admin-text);
+  font-size: 0.78rem;
+}
+
+.admin-row-sub {
+  margin-top: 0.5rem;
+}
+
+.admin-row-sub select {
+  width: 100%;
+  padding: 0.55rem 0.6rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.55rem;
+  background: var(--admin-bg);
+  color: var(--admin-text);
+  font-size: 0.8rem;
+}
+
+.admin-row-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--admin-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.admin-row textarea {
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--admin-text);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.admin-row textarea::placeholder {
+  color: color-mix(in oklch, var(--admin-muted) 78%, transparent);
+}
+
+.admin-row textarea:focus {
+  outline: none;
+}
+
+.admin-options {
+  overflow: hidden;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.9rem;
+  background: var(--admin-surface);
+}
+
+.admin-options-title {
+  padding: 0.85rem 1rem 0.45rem;
+  color: var(--admin-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.admin-option-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.65rem 1rem;
+  border-top: 1px solid var(--admin-border);
+}
+
+.admin-option-row > span {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 7.5rem;
+  color: var(--admin-muted);
+  font-size: 0.8rem;
+}
+
+.admin-option-row > span .icon {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.admin-option-row select,
+.admin-option-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.3rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--admin-text);
+  font-size: 0.82rem;
+  text-align: right;
+}
+
+.admin-option-row select {
+  cursor: pointer;
+}
+
+.admin-option-row input::placeholder {
+  color: color-mix(in oklch, var(--admin-muted) 72%, transparent);
+}
+
+.admin-option-row select:focus,
+.admin-option-row input:focus {
+  outline: none;
+}
+
+.admin-composer-fields > .field-error {
+  margin-top: 0.25rem;
+}
+
+.admin-create-btn {
+  width: 100%;
+  padding: 0.95rem 1.25rem;
+  border: 0;
+  border-radius: 0.85rem;
+  background: var(--admin-cream);
+  color: var(--admin-cream-foreground);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.admin-create-btn:hover {
+  background: oklch(0.985 0.012 85);
+  transform: translateY(-1px);
+}
+
+.admin-create-btn:active {
+  transform: none;
+}

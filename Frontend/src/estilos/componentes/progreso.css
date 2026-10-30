@@ -1,0 +1,17 @@
+/* Barra de progreso */
+
+.progress {
+  height: 0.375rem;
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--primary);
+  transition: width 700ms;
+}
