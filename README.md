@@ -235,8 +235,7 @@ inscripciones de ejemplo.
 
 Todos los endpoints de negocio cuelgan de `/api/v1`; `GET /health` está en la
 raíz del servidor. El catálogo completo, con permisos, filtros y mapeo de campos,
-está en
-`Api JUANCA/NIVELACION_BACKEND_FRONTEND.md`.
+se resume en la tabla siguiente.
 
 | Recurso | Rutas principales |
 |---|---|
@@ -343,14 +342,7 @@ npm run preview
 - [`Backend/README.md`](Backend/README.md): instalación y ejecución del backend.
 - [`Backend/ESTRUCTURA_API_REST.md`](Backend/ESTRUCTURA_API_REST.md): capas,
   archivos y responsabilidades.
-- `Api JUANCA/NIVELACION_BACKEND_FRONTEND.md`: estado, endpoints, permisos,
-  mapeo de campos y pendientes.
-- `Api JUANCA/MIGRACION_LOGICA_ANTERIOR.md`: equivalencia entre el núcleo
-  anterior de `Api JUANCA` y el backend nuevo.
 - [`Frontend/README.md`](Frontend/README.md): páginas y estructura del frontend.
-
-Los documentos de nivelación y migración se mantienen en `Api JUANCA` porque
-describen el paso del núcleo anterior al backend nuevo.
 
 ---
 

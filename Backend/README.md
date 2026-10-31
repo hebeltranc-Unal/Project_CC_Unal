@@ -77,10 +77,8 @@ El frontend debe enviar las peticiones con `credentials: "include"`.
 | Reportes | `GET /reportes/resumen`, `GET /reportes/areas`, `GET /reportes/ocupacion` |
 | Contacto | `POST /contacto` |
 
-El catálogo completo, con permisos y filtros, está en
-`Api JUANCA/NIVELACION_BACKEND_FRONTEND.md`.
-La equivalencia con el núcleo anterior está en
-`Api JUANCA/MIGRACION_LOGICA_ANTERIOR.md`.
+La estructura interna y la responsabilidad de cada capa están en
+[`ESTRUCTURA_API_REST.md`](ESTRUCTURA_API_REST.md).
 
 ## Pruebas
 

@@ -229,8 +229,8 @@ SQLite en memoria, así que no modifican `gea.db`.
 .venv\Scripts\python.exe -m pytest
 ```
 
-El catálogo completo de endpoints y el mapeo con el frontend están en
-[`Api JUANCA/NIVELACION_BACKEND_FRONTEND.md`](../../Api JUANCA/NIVELACION_BACKEND_FRONTEND.md).
+El catálogo completo de endpoints está en [`README.md`](README.md) y en la
+documentación interactiva `/docs`.
 
 ## Flujo de una petición
 
@@ -264,10 +264,6 @@ response_model de Pydantic
 | `gea/validaciones.py` | `app/core/validaciones.py` y `app/core/algoritmos.py` |
 | `gea/constantes.py` | `app/core/constants.py` |
 | `gea/datos_prueba.py` | `app/db/seed.py` |
-
-El mapeo detallado función por función, incluido el destino del merge sort y de
-cada regla de negocio, está en
-[`Api JUANCA/MIGRACION_LOGICA_ANTERIOR.md`](../../Api JUANCA/MIGRACION_LOGICA_ANTERIOR.md).
 
 ## Dependencias
 
